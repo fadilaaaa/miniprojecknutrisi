@@ -1,3 +1,4 @@
+"use client";
 const saveUserData = (userData) => {
   localStorage.setItem("userData", JSON.stringify(userData));
 };
