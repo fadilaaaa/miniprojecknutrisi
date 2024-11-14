@@ -16,15 +16,16 @@ export default function CTASimplewithIllustration() {
               {/* Heading */}
               <div>
                 <div className="mb-1 text-sm font-bold uppercase tracking-wider text-blue-600 ">
-                  Get Started
+                  Mulai Sekarang
                 </div>
                 <h2 className="mb-4 text-4xl font-black text-black ">
-                  Grow your business <span className="text-blue-600 ">now</span>
-                  !
+                  Cek Nutrisi Makanan Anda{" "}
+                  <span className="text-blue-600 ">sekarang</span>!
                 </h2>
                 <h3 className="text-xl font-medium leading-relaxed text-gray-700 ">
-                  Inspiring results from day one without the pain. Get your own
-                  custom dashboard and start building amazing services.
+                  Dapatkan informasi nutrisi dari foto makanan Anda dengan
+                  mudah. Mulai sekarang dan ketahui kandungan kalori,
+                  karbohidrat, lemak, dan protein dari makanan Anda.
                 </h3>
               </div>
               {/* END Heading */}

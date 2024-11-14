@@ -30,9 +30,10 @@ export default function Generate() {
           body: dataform,
         });
         const data = await response.json();
+
         console.log(data);
 
-        setGeneratedData(data);
+        setGeneratedData(JSON.parse(data.hasil));
       } catch (error) {
         console.error("Error fetching data:", error);
         setGeneratedData({ error: "Gagal memproses gambar" });
@@ -77,11 +78,76 @@ export default function Generate() {
             <h2 autoFocus className="text-2xl text-blue-400 font-medium my-4">
               Hasil Analisis:
             </h2>
-            <div className="w-full text-left">
+            <div className="w-full text-left md:min-w-[50vw]">
               {generatedData.error ? (
                 <p className="text-red-500">{generatedData.error}</p>
               ) : (
-                <div className="text-lg">{generatedData.hasil}</div>
+                <>
+                  <div className="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200">
+                    <div className="flex flex-col p-4 border-b border-slate-200">
+                      <h3 className="text-lg font-semibold text-slate-800">
+                        Items
+                      </h3>
+                      <div className="grid grid-cols-2 gap-4">
+                        {generatedData.food_items.map((item, index) => (
+                          <div key={index} className=" mt-2">
+                            <p className="text-slate-800">
+                              {item.name}
+                              <br />
+                              <span className="text-slate-600">
+                                {item.calories} kalori
+                                <br />
+                                {!item.carbohydrates.includes("depending") && (
+                                  <>
+                                    {item.carbohydrates} karbohidrat
+                                    <br />
+                                  </>
+                                )}
+                                {!item.fats.includes("depending") && (
+                                  <>
+                                    {item.fats} lemak
+                                    <br />
+                                  </>
+                                )}
+                                {!item.protein.includes("depending") && (
+                                  <>
+                                    {item.protein} protein
+                                    <br />
+                                  </>
+                                )}
+                                {!item.fiber.includes("depending") && (
+                                  <>
+                                    {item.fiber} serat
+                                    <br />
+                                  </>
+                                )}
+                                {!item.sugars.includes("depending") && (
+                                  <>{item.sugars} gula</>
+                                )}
+                              </span>
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex flex-col p-4 border-b border-slate-200">
+                      <h3 className="text-lg font-semibold text-slate-800">
+                        Aktifitas untuk membakar kalori
+                      </h3>
+                      {generatedData.physical_activities.map((item, index) => (
+                        <div key={index} className="flex flex-col mt-2">
+                          <p className="text-slate-800">
+                            {item.activity}
+                            <br />
+                            <span className="text-slate-600">
+                              {item.duration || item.repetitions}
+                            </span>
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           </>
